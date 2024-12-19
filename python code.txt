@@ -1,0 +1,64 @@
+total_price = 0  # Total price outside the function
+
+# Function to display products
+def products_display():
+    print("Available products:")
+    print("1) Handphones price is $30")
+    print("2) Charger price is $40")
+    print("3) Phone price is $100")
+    print("4) Laptop is $150")
+    print("5) Computer price is $200")
+
+# Function to take user's order
+def user_order():
+    global total_price
+    while True:
+        products_display()
+        user_choice = int(input("Enter the product number to add to the cart (0 to finish): "))
+        
+        if user_choice == 1:
+            total_price += 30
+        elif user_choice == 2:
+            total_price += 40
+        elif user_choice == 3:
+            total_price += 100
+        elif user_choice == 4:
+            total_price += 150
+        elif user_choice == 5:
+            total_price += 200
+        elif user_choice == 0:
+            break
+        else:
+            print("Invalid choice. Try again.")
+        
+        print(f"Your total price so far is: ${total_price}")
+
+# Function to calculate discount
+def calculate_discount(total_price):
+    if total_price < 50:
+        return 0
+    elif total_price < 100:
+        return 0.05
+    elif total_price < 200:
+        return 0.15
+    else:
+        return 0.20
+
+# Function to calculate tax
+def calculate_tax(price_after_discount, tax_rate=10):
+    return price_after_discount * tax_rate / 100
+
+# Main Program
+user_order()
+
+discount_rate = calculate_discount(total_price)
+discounted_price = total_price * discount_rate
+price_after_discount = total_price - discounted_price
+
+tax = calculate_tax(price_after_discount, tax_rate=10)
+last_final_price = price_after_discount + tax
+
+print("The discounted amount is:", discounted_price)
+print("The price after discount is:", price_after_discount)
+print("The tax amount is:", tax)
+print("The final price to be paid is:", last_final_price)
